@@ -1,7 +1,6 @@
-"""PDF Q&A Chatbot - RAG-based PDF document Q&A assistant"""
+"""PDF Q&A Chatbot"""
 
 import os
-# Disable Hugging Face telemetry to avoid telemetry-related runtime errors
 os.environ.setdefault("HF_HUB_DISABLE_TELEMETRY", "1")
 
 import streamlit as st
@@ -24,7 +23,7 @@ if "pdf_processed" not in st.session_state:
 
 
 class PDFChatbot:
-    """PDF document processor and Q&A system."""
+    """PDF document processor and Q&A part"""
     
     def __init__(self):
         self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -43,7 +42,7 @@ class PDFChatbot:
     
     def extract_text(self, pdf_file) -> str:
         """Extract text from PDF."""
-        # Try PyPDF2 first (fast, pure-Python)
+        # Try PyPDF2 first
         try:
             reader = PyPDF2.PdfReader(pdf_file)
             texts = []
@@ -63,11 +62,11 @@ class PDFChatbot:
         except Exception:
             pass
 
-        # Fallback to PyMuPDF (better extraction for complex PDFs)
+        # Then we use PyMuPDF for better extraction for complex PDFs
         try:
             import fitz  # PyMuPDF
 
-            # Streamlit uploaded files are file-like; read bytes then reopen in fitz
+            # read bytes then reopen in fitz
             if hasattr(pdf_file, "read"):
                 pdf_bytes = pdf_file.read()
                 try:
@@ -95,7 +94,7 @@ class PDFChatbot:
         except Exception:
             pass
 
-        # Last resort: OCR pages that appear empty (requires pytesseract + pdf2image)
+        # OCR pages that appear empty require pytesseract + pdf2image
         try:
             from pdf2image import convert_from_bytes, convert_from_path
             import pytesseract
@@ -184,7 +183,7 @@ def get_chatbot():
 chatbot = get_chatbot()
 
 st.title("PDF Q&A Assistant")
-st.markdown("Upload a PDF and ask questions about its content.")
+st.markdown("Upload a PDF and ask questions about its content")
 
 with st.sidebar:
     st.header("Upload Document")
@@ -219,7 +218,7 @@ if st.session_state.pdf_processed:
         
         st.session_state.messages.append({"role": "assistant", "content": answer})
 else:
-    st.info("Upload a PDF to start asking questions.")
+    st.info("Upload a PDF to start asking questions")
 
 st.markdown("---")
 st.markdown("<p style='text-align:center; color:gray;'>Built by Kamya Mehra</p>", unsafe_allow_html=True)
