@@ -4,11 +4,11 @@ A simple RAG (Retrieval-Augmented Generation) chatbot that allows users to uploa
 
 ## Features
 
-- 📄 Upload PDF documents
-- 💬 Ask natural language questions
-- 🔍 Intelligent context retrieval using ChromaDB
-- 🤖 Powered by Claude AI for accurate answers
-- 🎨 Clean, professional interface
+- Upload PDF documents
+- Ask PDF related questions
+- Intelligent context retrieval using ChromaDB
+- Powered by Claude AI for accurate answers
+- Clean, professional interface
 
 ## Tech Stack
 
@@ -18,46 +18,6 @@ A simple RAG (Retrieval-Augmented Generation) chatbot that allows users to uploa
 - **LLM**: Claude (Anthropic)
 - **Framework**: LangChain
 
-## Local Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd pdf-qa-chatbot
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set up environment variable**
-   ```bash
-   export ANTHROPIC_API_KEY="your-api-key-here"
-   ```
-
-4. **Run the application**
-   ```bash
-   streamlit run app.py
-   ```
-
-## Deployment to Streamlit Cloud
-
-1. **Push your code to GitHub**
-   - Create a new repository on GitHub
-   - Push the code to your repository
-
-2. **Deploy on Streamlit Cloud**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Click "New app"
-   - Select your repository, branch, and `app.py`
-   - Add your API key in "Advanced settings" → "Secrets"
-   
-3. **Configure Secrets**
-   In the Streamlit Cloud dashboard, add:
-   ```toml
-   ANTHROPIC_API_KEY = "your-api-key-here"
-   ```
 
 ## How It Works
 
@@ -95,29 +55,11 @@ pdf-qa-chatbot/
 - **Embedding Model**: all-MiniLM-L6-v2
 - **LLM Model**: Claude Sonnet 4
 
-## Troubleshooting
-
-**Issue**: "ANTHROPIC_API_KEY not found"
-- **Solution**: Ensure you've set the environment variable or added it to Streamlit secrets
-
-**Issue**: PDF processing fails
-- **Solution**: Ensure PDF is text-based (not scanned images)
-
-**Issue**: Slow response time
-- **Solution**: Consider reducing chunk size or top_k parameter
 
 ## Future Enhancements
 
 - Support for multiple PDFs
-- Citation of source chunks
 - Export chat history
 - Custom chunk size configuration
 - Support for other document formats
 
-## License
-
-MIT License
-
-## Support
-
-For issues or questions, please open an issue on GitHub.
